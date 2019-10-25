@@ -10,23 +10,77 @@ import { Student } from '../../shared/student.model';
 export class ServerComponent {
     serverId = 10;
     serverStatus = 'offLine';
-    counter = 0;
+    counter = 5;
     isLogin = false;
     userName: string;
     students: Student[] = [new Student('Bill Gates', 'Computer Science'),
                            new Student('Steve Jobs', 'Computer Science'),
                            new Student('Elon Musk', 'Computer Science')];
 
+    egg = 0;
+    rice = 0;
+    chicken = 0;
+    mushroom = 0;
+    dishes = '';
+    finish = false;
+
+    addEgg() {
+      if (this.counter > 0) {
+        this.egg ++;
+        this.counter --;
+      }
+    }
+
+    addRice() {
+      if (this.counter > 0) {
+        this.rice ++;
+        this.counter --;
+      }
+    }
+
+    addChicken() {
+      if (this.counter > 0) {
+        this.chicken ++;
+        this.counter --;
+      }
+    }
+
+
+    addMushroom() {
+      if (this.counter > 0) {
+        this.mushroom ++;
+        this.counter --;
+      }
+    }
+
+
     getServerStatus() {
       return this.serverStatus;
     }
 
-    counterPlus() {
-     this.counter ++;
-    }
 
     resetCounter() {
-      this.counter = 0;
+      this.counter = 5;
+      this.mushroom = 0;
+      this.chicken = 0;
+      this.egg = 0;
+      this.rice = 0;
+      this.dishes = '';
+      this.finish = false;
+    }
+
+    checkDishes() {
+      this.finish = true;
+      // tslint:disable-next-line:triple-equals
+      if (this.egg == 3 && this.counter == 2) {
+        this.dishes = 'Tea Egg';
+        return true;
+        // tslint:disable-next-line:triple-equals
+      } else if (this.rice == 2 && this.counter == 3) {
+        this.dishes = 'Rice Ball';
+        return true;
+      }
+      return false;
     }
 
     login() {
